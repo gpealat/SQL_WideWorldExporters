@@ -7,12 +7,14 @@ USE WideWorldImporters
 -- T2 = π_T1( CustomerID )
 
 -- Get all OrderID for the customers
--- T3 = σ_Sales.Orders( CustomerID = T2.CustomerID )
--- T4 = π_T3( OrderID )
+-- T3 = T2 JOIN Sales.Orders( CustomerID = T2.CustomerID )
+-- T4 = σ_T3()
+-- T5 = π_T4( OrderID )
 
 -- Get all StockItemsID for orderID
--- T3 = σ_Sales.OrderLines( OrderID = T4.OrderID )
--- T4 = π_T3( Quantity )
+-- T6 = T5 JOIN Sales.OrderLines( OrderID = T4.OrderID )
+-- T7 = σ_T6
+-- T8 = π_T7( Quantity )
 
 SELECT
 	SUM(orderline.Quantity) AS TotalQuantityBought, T4.CustomerName
